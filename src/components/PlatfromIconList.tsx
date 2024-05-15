@@ -8,10 +8,10 @@ import { IconType } from 'react-icons'
 
 
 interface Props {
-    platform: Platform[]
+    platforms: Platform[]
 }
 
-function PlatfromIconList({ platform }: Props) {
+function PlatfromIconList({ platforms }: Props) {
     const iconMap: { [key: string]: IconType } = {
         pc: FaWindows,
         playstation: FaPlaystation,
@@ -25,8 +25,8 @@ function PlatfromIconList({ platform }: Props) {
     }
     return (
         <HStack marginY={'10px'} >
-            {platform.map((platform) =>
-                <Icon margin={'3px'} color={'gray.500'} as={iconMap[platform.slug]} />
+            {platforms.map((p) =>
+                <Icon margin={'3px'} color={'gray.500'} as={iconMap[p.slug]} key={p.id} />
             )}
         </HStack>
     )

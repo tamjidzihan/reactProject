@@ -12,7 +12,7 @@ interface Props {
 
 function GameCard({ game }: Props) {
     return (
-        <Card borderRadius='10px' overflow={"hidden"} boxShadow={" rgba(17, 12, 46, 0.15) 0px 50px 100px -20px"} width={'3rm'}>
+        <Card borderRadius='10px' overflow={"hidden"} boxShadow={" rgba(17, 12, 46, 0.15) 0px 50px 100px -20px"} width={'4rm'}>
 
             <Image src={getCroppedImageUrl(game.background_image)} />
 
@@ -24,7 +24,7 @@ function GameCard({ game }: Props) {
 
                 <HStack justifyContent={"space-between"}>
                     <PlatfromIconList
-                        platform={game.parent_platforms.map(p => p.platform)}
+                        platforms={game.parent_platforms.map(p => p.platform)}
                     />
                     <MetacriticScore metacritic={game.metacritic} />
                 </HStack>

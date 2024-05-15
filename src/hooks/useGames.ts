@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import apiClint from "../services/api-clint";
-import { CanceledError } from "axios";
+import { AxiosRequestConfig, CanceledError } from "axios";
+import { Genre } from "./useGenre";
 
 
 
@@ -23,7 +24,7 @@ export interface FetchGameResponse {
     results: Games[]
 }
 
-const useGames = () => {
+const useGames = (selectedGenre: Genre | null) => {
     const [games, setGames] = useState<Games[]>([]);
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(false)
@@ -32,7 +33,13 @@ const useGames = () => {
     useEffect(() => {
         setIsLoading(true)
         apiClint
-            .get<FetchGameResponse>('/games', { signal: controller.signal })
+            .get<FetchGameResponse>(
+                '/games',
+                {
+                    signal: controller.signal,
+                    params: { genres: selectedGenre?.id }
+                }
+            )
             .then(res => {
                 setGames(res.data.results)
                 setIsLoading(false)
@@ -43,7 +50,7 @@ const useGames = () => {
                 setIsLoading(false)
             })
         // return () => controller.abort()
-    }, []);
+    }, [selectedGenre?.id]);
     return { games, error, isLoading }
 };
 
