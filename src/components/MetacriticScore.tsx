@@ -8,7 +8,7 @@ function MetacriticScore({ metacritic }: Props) {
     let color = metacritic > 75 ? 'green' : metacritic > 60 ? 'yellow' : '';
 
     return (
-        <Tag colorScheme={color}>{metacritic}</Tag>
+        <Tag colorScheme={color}> {metacritic}</Tag >
     )
 }
 

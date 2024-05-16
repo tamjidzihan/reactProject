@@ -9,7 +9,7 @@ function Navbar() {
 
                 <HStack >
                     <Image src={logo} boxSize={'60px'} />
-                    <Text fontSize={'4xl'} > <Kbd>Z</Kbd> - <Kbd>ZONE</Kbd></Text>
+                    <Text fontSize={'4xl'} color={'orange.500'} > <Kbd>Z</Kbd> - <Kbd>ZONE</Kbd></Text>
 
                 </HStack>
                 <ColorModeSwitch />

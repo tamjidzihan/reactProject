@@ -3,15 +3,16 @@ import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import { Genre } from "../hooks/useGenre";
-
+import { PlatformList } from "../hooks/usePlatforms";
 
 interface Props {
     selectedGenre: Genre | null
+    selectedPlatform: PlatformList | null
 }
 
 
-function GameGrid({ selectedGenre }: Props) {
-    const { error, isLoading, games } = useGames(selectedGenre);
+function GameGrid({ selectedGenre, selectedPlatform }: Props) {
+    const { error, isLoading, games } = useGames(selectedGenre, selectedPlatform);
     const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     return (
@@ -20,8 +21,6 @@ function GameGrid({ selectedGenre }: Props) {
                 <AlertIcon />
                 <AlertTitle>{error}</AlertTitle>
             </Alert>}
-
-
 
             <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} spacing={5} paddingX={'15px'}>
 
