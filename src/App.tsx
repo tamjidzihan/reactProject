@@ -19,6 +19,7 @@ function App() {
 
   return (
     <>
+      {/* ===== Grid Layout ===== */}
       <Grid templateAreas={{
         base: `"nav" "main"`,
         lg: `"nav nav" "aside main"`
@@ -28,10 +29,22 @@ function App() {
           lg: '200px'
         }}>
 
-        <GridItem area='nav' >
+        {/* ===== Start Navbar ===== */}
+        <GridItem
+          area='nav'
+          position='sticky'
+          top='0'
+          w="100%"
+          zIndex='99'
+          backdropFilter="auto"
+          backdropBlur="22px"
+          boxShadow="md"
+        >
           <Navbar />
         </GridItem>
+        {/* ===== End Navbar ===== */}
 
+        {/* ===== Start Sidebar  ===== */}
         <Show above="lg">
           <GridItem area='aside' padding={'8px'}>
             <GenreList
@@ -42,7 +55,9 @@ function App() {
             />
           </GridItem>
         </Show>
+        {/* ===== End Sidebar  ===== */}
 
+        {/* ===== Start Main  ===== */}
         <GridItem area='main'>
           <PlatformsSelector
             onSelectPlatfrom={(platfrom) => setISSelectedPlatform(platfrom)}
@@ -53,6 +68,7 @@ function App() {
             selectedPlatform={isSelectedPlatform}
           />
         </GridItem>
+        {/* ===== End Main  ===== */}
 
       </Grid>
 
