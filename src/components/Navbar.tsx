@@ -5,8 +5,7 @@ import ColorModeSwitch from './ColorModeSwitch'
 function Navbar() {
     return (
         <div>
-            <HStack justifyContent={'space-between'} padding='10px'>
-
+            <HStack justifyContent={'space-between'} >
                 <HStack >
                     <Image src={logo} boxSize={'60px'} />
                     <Text fontSize={'4xl'} color={'orange.500'} > <Kbd>Z</Kbd> - <Kbd>ZONE</Kbd></Text>

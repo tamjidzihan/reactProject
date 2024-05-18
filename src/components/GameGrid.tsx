@@ -6,13 +6,14 @@ import { Genre } from "../hooks/useGenre";
 import { PlatformList } from "../hooks/usePlatforms";
 
 interface Props {
-    selectedGenre: Genre | null
-    selectedPlatform: PlatformList | null
+    selectedGenre: Genre | null;
+    selectedPlatform: PlatformList | null;
+    selectedSortOrder: string;
 }
 
 
-function GameGrid({ selectedGenre, selectedPlatform }: Props) {
-    const { error, isLoading, games } = useGames(selectedGenre, selectedPlatform);
+function GameGrid({ selectedGenre, selectedPlatform, selectedSortOrder }: Props) {
+    const { error, isLoading, games } = useGames(selectedGenre, selectedPlatform, selectedSortOrder);
     const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     return (

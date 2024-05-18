@@ -1,4 +1,4 @@
-import { Grid, GridItem, Show } from '@chakra-ui/react'
+import { Grid, GridItem, HStack, Show } from '@chakra-ui/react'
 import './App.css'
 import Navbar from './components/Navbar'
 import GameGrid from './components/GameGrid'
@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { Genre } from './hooks/useGenre'
 import PlatformsSelector from './components/PlatformsSelector'
 import { PlatformList } from './hooks/usePlatforms'
+import OrderingGames from './components/OrderingGames'
 
 
 
@@ -14,6 +15,7 @@ import { PlatformList } from './hooks/usePlatforms'
 function App() {
   const [isSelectedGenre, setISSelectedGenre] = useState<Genre | null>(null)
   const [isSelectedPlatform, setISSelectedPlatform] = useState<PlatformList | null>(null)
+  const [isSelectedSortOrder, setIsSelectedSortOrder] = useState('')
 
 
 
@@ -48,9 +50,7 @@ function App() {
         <Show above="lg">
           <GridItem area='aside' padding={'8px'}>
             <GenreList
-              onSelectGenre={(genre) => {
-                setISSelectedGenre(genre)
-              }}
+              onSelectGenre={(genre) => setISSelectedGenre(genre)}
               selectedGenre={isSelectedGenre}
             />
           </GridItem>
@@ -59,13 +59,20 @@ function App() {
 
         {/* ===== Start Main  ===== */}
         <GridItem area='main'>
-          <PlatformsSelector
-            onSelectPlatfrom={(platfrom) => setISSelectedPlatform(platfrom)}
-            selectedPlatfrom={isSelectedPlatform}
-          />
+
+          <HStack padding='0 15px 10px'>
+            <PlatformsSelector
+              onSelectPlatfrom={(platfrom) => setISSelectedPlatform(platfrom)}
+              selectedPlatfrom={isSelectedPlatform}
+            />
+            <OrderingGames onSelectSortOrder={(order) => { setIsSelectedSortOrder(order) }}
+              selectedSortOrder={isSelectedSortOrder}
+            />
+          </HStack>
           <GameGrid
             selectedGenre={isSelectedGenre}
             selectedPlatform={isSelectedPlatform}
+            selectedSortOrder={isSelectedSortOrder}
           />
         </GridItem>
         {/* ===== End Main  ===== */}
