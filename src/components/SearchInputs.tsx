@@ -18,7 +18,7 @@ function SearchInputs({ onSearchInput }: Props) {
         }}>
             <InputGroup>
                 <InputLeftElement children={<FaSearch />} />
-                <InputRightElement children={<CloseIcon fontSize='small' />} />
+                <InputRightElement children={<CloseIcon fontSize='small' cursor='pointer' />} />
                 <Input
                     type='text'
                     borderRadius={15}

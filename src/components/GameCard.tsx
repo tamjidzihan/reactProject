@@ -14,20 +14,20 @@ function GameCard({ game }: Props) {
     return (
         <Card borderRadius='10px' overflow={"hidden"} boxShadow={" rgba(17, 12, 46, 0.15) 0px 50px 100px -20px"} width={'4rm'}>
 
-            <Image src={getCroppedImageUrl(game.background_image)} />
+            <Image objectFit='cover' src={getCroppedImageUrl(game.background_image)} />
 
             <CardBody>
 
-                <Heading fontSize={"2xl"}>
-                    {game.name}
-                </Heading>
-
-                <HStack justifyContent={"space-between"}>
+                <HStack justifyContent={"space-between"} marginBottom={3}>
                     <PlatfromIconList
                         platforms={game.parent_platforms.map(p => p.platform)}
                     />
                     <MetacriticScore metacritic={game.metacritic} />
                 </HStack>
+
+                <Heading fontSize={"2xl"}>
+                    {game.name}
+                </Heading>
 
             </CardBody>
         </Card>

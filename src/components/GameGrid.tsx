@@ -15,7 +15,7 @@ interface Props {
 
 function GameGrid({ selectedGenre, selectedPlatform, selectedSortOrder, searchInputText }: Props) {
     const { error, isLoading, games } = useGames(selectedGenre, selectedPlatform, selectedSortOrder, searchInputText);
-    const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
     return (
         <>
@@ -24,7 +24,10 @@ function GameGrid({ selectedGenre, selectedPlatform, selectedSortOrder, searchIn
                 <AlertTitle>{error}</AlertTitle>
             </Alert>}
 
-            <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} spacing={5} paddingX={'15px'}>
+            <SimpleGrid
+                columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+                spacing={6}
+                paddingX={'15px'}>
 
                 {isLoading && skeletons.map(skeleton =>
                     <GameCardSkeleton key={skeleton} />

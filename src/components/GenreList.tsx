@@ -1,5 +1,5 @@
 import useGenre, { Genre } from '../hooks/useGenre'
-import { Button, HStack, Image, ListItem, UnorderedList } from '@chakra-ui/react'
+import { Button, HStack, Heading, Image, ListItem, UnorderedList } from '@chakra-ui/react'
 import getCroppedImageUrl from '../services/image-url'
 import GenreListSkeleton from './GenreListSkeleton'
 
@@ -17,8 +17,8 @@ function GenreList({ onSelectGenre, selectedGenre }: Props) {
 
     return (
         <>
-
             <UnorderedList >
+                <Heading fontSize='2xl' marginY={3}>Genres</Heading>
 
                 {isLoading && skeletons.map(skeleton =>
                     <GenreListSkeleton key={skeleton} />

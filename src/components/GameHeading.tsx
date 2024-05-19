@@ -13,7 +13,7 @@ function GameHeading({ genre, platformList }: Props) {
 
     const heading = `${genre?.name || ''} ${platformList?.name || ''} Games`
     return (
-        <Heading as='h1' padding='10px'>
+        <Heading as='h1' marginY='10px' fontSize='5xl'>
             {heading}
         </Heading>
     )
