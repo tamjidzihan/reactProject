@@ -19,11 +19,20 @@ function OrderingGames({ onSelectSortOrder, selectedSortOrder }: Props) {
         { value: '-updated', label: 'Updated' },
         { value: '-created', label: 'Created' },
     ]
+
+
+    const currentSortOrder = sortOrder.find((order) => order.value === selectedSortOrder)
+
     return (
         <Menu>
-            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} margin={'10px'}>
+            {/* <MenuButton as={Button} rightIcon={<ChevronDownIcon />} margin={'10px'}>
                 Order By:{selectedSortOrder}
+            </MenuButton> */}
+
+            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} margin={'10px'}>
+                Order By : {currentSortOrder?.label}
             </MenuButton>
+
 
 
             <MenuList>

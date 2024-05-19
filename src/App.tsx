@@ -8,6 +8,8 @@ import { Genre } from './hooks/useGenre'
 import PlatformsSelector from './components/PlatformsSelector'
 import { PlatformList } from './hooks/usePlatforms'
 import OrderingGames from './components/OrderingGames'
+import Heading from './components/GameHeading'
+import GameHeading from './components/GameHeading'
 
 
 
@@ -16,6 +18,7 @@ function App() {
   const [isSelectedGenre, setISSelectedGenre] = useState<Genre | null>(null)
   const [isSelectedPlatform, setISSelectedPlatform] = useState<PlatformList | null>(null)
   const [isSelectedSortOrder, setIsSelectedSortOrder] = useState('')
+  const [isSearchInputs, setIsSearchInputs] = useState('')
 
 
 
@@ -42,7 +45,7 @@ function App() {
           backdropBlur="22px"
           boxShadow="md"
         >
-          <Navbar />
+          <Navbar onSearchText={(searchText) => setIsSearchInputs(searchText)} />
         </GridItem>
         {/* ===== End Navbar ===== */}
 
@@ -59,8 +62,12 @@ function App() {
 
         {/* ===== Start Main  ===== */}
         <GridItem area='main'>
-
+          <GameHeading
+            genre={isSelectedGenre}
+            platformList={isSelectedPlatform}
+          />
           <HStack padding='0 15px 10px'>
+
             <PlatformsSelector
               onSelectPlatfrom={(platfrom) => setISSelectedPlatform(platfrom)}
               selectedPlatfrom={isSelectedPlatform}
@@ -73,6 +80,7 @@ function App() {
             selectedGenre={isSelectedGenre}
             selectedPlatform={isSelectedPlatform}
             selectedSortOrder={isSelectedSortOrder}
+            searchInputText={isSearchInputs}
           />
         </GridItem>
         {/* ===== End Main  ===== */}

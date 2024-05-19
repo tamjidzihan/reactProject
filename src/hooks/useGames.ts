@@ -25,7 +25,7 @@ export interface FetchGameResponse {
     results: Games[]
 }
 
-const useGames = (selectedGenre: Genre | null, selectedPlatform: PlatformList | null, selectedSortOrder: string) => {
+const useGames = (selectedGenre: Genre | null, selectedPlatform: PlatformList | null, selectedSortOrder: string, searchInputText: string | null) => {
     const [games, setGames] = useState<Games[]>([]);
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(false)
@@ -41,7 +41,8 @@ const useGames = (selectedGenre: Genre | null, selectedPlatform: PlatformList | 
                     params: {
                         genres: selectedGenre?.id,
                         platforms: selectedPlatform?.id,
-                        ordering: selectedSortOrder
+                        ordering: selectedSortOrder,
+                        search: searchInputText
                     }
                 }
             )
@@ -58,7 +59,8 @@ const useGames = (selectedGenre: Genre | null, selectedPlatform: PlatformList | 
     }, [
         selectedGenre?.id,
         selectedPlatform?.id,
-        selectedSortOrder
+        selectedSortOrder,
+        searchInputText
     ]);
     return { games, error, isLoading }
 };
