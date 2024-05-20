@@ -26,7 +26,7 @@ function GameGrid({ selectedGenre, selectedPlatform, selectedSortOrder, searchIn
 
             <SimpleGrid
                 columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-                spacing={6}
+                spacing={8}
                 paddingX={'15px'}>
 
                 {isLoading && skeletons.map(skeleton =>

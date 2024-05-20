@@ -1,5 +1,5 @@
 import useGenre, { Genre } from '../hooks/useGenre'
-import { Button, HStack, Heading, Image, ListItem, UnorderedList } from '@chakra-ui/react'
+import { Button, HStack, Heading, Image, ListItem, Switch, UnorderedList } from '@chakra-ui/react'
 import getCroppedImageUrl from '../services/image-url'
 import GenreListSkeleton from './GenreListSkeleton'
 
@@ -36,7 +36,7 @@ function GenreList({ onSelectGenre, selectedGenre }: Props) {
                                 onClick={() => onSelectGenre(genre)}
                                 fontSize={genre.id === selectedGenre?.id ? 'xl' : 'lg'}
                                 fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'}
-                                variant={'link'}
+                                variant={"link"}
                                 whiteSpace='wrap'
                                 textAlign='start'
                             >

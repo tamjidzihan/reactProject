@@ -10,6 +10,7 @@ import { PlatformList } from './hooks/usePlatforms'
 import OrderingGames from './components/OrderingGames'
 import Heading from './components/GameHeading'
 import GameHeading from './components/GameHeading'
+import GamePagination from './components/GamePagination'
 
 
 
@@ -31,7 +32,7 @@ function App() {
       }}
         templateColumns={{
           base: '1fr',
-          lg: '200px'
+          lg: '250px'
         }}>
 
         {/* ===== Start Navbar ===== */}
@@ -39,7 +40,6 @@ function App() {
           area='nav'
           position='sticky'
           top='0'
-          w="100%"
           zIndex='99'
           backdropFilter="auto"
           backdropBlur="22px"
@@ -51,7 +51,7 @@ function App() {
 
         {/* ===== Start Sidebar  ===== */}
         <Show above="lg">
-          <GridItem area='aside' padding={'8px'}>
+          <GridItem area='aside' padding={'15px'}>
             <GenreList
               onSelectGenre={(genre) => setISSelectedGenre(genre)}
               selectedGenre={isSelectedGenre}
@@ -83,6 +83,7 @@ function App() {
             selectedSortOrder={isSelectedSortOrder}
             searchInputText={isSearchInputs}
           />
+          <GamePagination />
         </GridItem>
         {/* ===== End Main  ===== */}
 
