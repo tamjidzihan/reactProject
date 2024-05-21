@@ -22,6 +22,8 @@ export interface Games {
 
 export interface FetchGameResponse {
     count: number;
+    next: string;
+    previous: string;
     results: Games[]
 }
 
