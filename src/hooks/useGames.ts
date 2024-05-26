@@ -9,7 +9,7 @@ import { PlatformList } from "./usePlatforms";
 export interface Platform {
     id: number;
     name: string;
-    slug: string
+    slug: string;
 }
 
 export interface Games {
@@ -17,21 +17,21 @@ export interface Games {
     name: string;
     background_image: string;
     metacritic: number;
-    parent_platforms: { platform: Platform }[]
+    parent_platforms: { platform: Platform }[];
 }
 
 export interface FetchGameResponse {
     count: number;
     next: string;
     previous: string;
-    results: Games[]
+    results: Games[];
 }
 
 const useGames = (selectedGenre: Genre | null, selectedPlatform: PlatformList | null, selectedSortOrder: string, searchInputText: string | null) => {
     const [games, setGames] = useState<Games[]>([]);
-    const [error, setError] = useState('')
-    const [isLoading, setIsLoading] = useState(false)
-    const controller = new AbortController()
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const controller = new AbortController();
 
     useEffect(() => {
         setIsLoading(true)

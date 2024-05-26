@@ -1,4 +1,3 @@
-import { Box, Grid, GridItem, HStack, Show } from '@chakra-ui/react'
 import './App.css'
 import Navbar from './components/Navbar'
 import GameGrid from './components/GameGrid'
@@ -7,8 +6,8 @@ import { useState } from 'react'
 import { Genre } from './hooks/useGenre'
 import PlatformsSelector from './components/PlatformsSelector'
 import { PlatformList } from './hooks/usePlatforms'
+import { Box, Grid, GridItem, HStack, Show } from '@chakra-ui/react'
 import OrderingGames from './components/OrderingGames'
-import Heading from './components/GameHeading'
 import GameHeading from './components/GameHeading'
 import GamePagination from './components/GamePagination'
 
@@ -21,6 +20,21 @@ function App() {
   const [isSelectedSortOrder, setIsSelectedSortOrder] = useState('')
   const [isSearchInputs, setIsSearchInputs] = useState('')
 
+  const [nextPage, setNextPage] = useState<string | null>(null);
+  const [previousPage, setPreviousPage] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const handleNextPage = () => {
+    if (nextPage) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (previousPage) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
 
 
   return (
@@ -83,7 +97,13 @@ function App() {
             selectedSortOrder={isSelectedSortOrder}
             searchInputText={isSearchInputs}
           />
-          <GamePagination />
+          <GamePagination
+            onNextPage={handleNextPage}
+            onPreviousPage={handlePreviousPage}
+            hasNextPage={!!nextPage}
+            hasPreviousPage={!!previousPage}
+
+          />
         </GridItem>
         {/* ===== End Main  ===== */}
 

@@ -1,25 +1,26 @@
 import { Stack, Button } from '@chakra-ui/react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 
+interface Props {
+    onNextPage: () => void;
+    onPreviousPage: () => void;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+}
 
-function GamePagination() {
 
-    const pageNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+function GamePagination({ onNextPage, onPreviousPage, hasNextPage, hasPreviousPage }: Props) {
+
 
     return (
         <Stack spacing={4} direction='row' justify='center' padding='20px'>
 
-            <Button variant='outline' size='lg'>
+            <Button onClick={onPreviousPage} isDisabled={!hasPreviousPage} boxShadow={" rgba(17, 12, 46, 0.15) 0px 50px 100px -20px"} width={'4rm'}>
                 <ChevronLeftIcon fontSize='xxx-large' cursor='pointer' />
             </Button>
 
-            {pageNumber.map((number) =>
-                <Button variant='outline' size='lg' key={number}>
-                    {number}
-                </Button>
-            )}
 
-            <Button variant='outline' size='lg'>
+            <Button onClick={onNextPage} isDisabled={!hasNextPage} boxShadow={" rgba(17, 12, 46, 0.15) 0px 50px 100px -20px"} width={'4rm'}>
                 <ChevronRightIcon fontSize='xxx-large' cursor='pointer' />
             </Button>
 
