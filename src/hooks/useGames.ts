@@ -27,10 +27,18 @@ export interface FetchGameResponse {
     results: Games[];
 }
 
-const useGames = (selectedGenre: Genre | null, selectedPlatform: PlatformList | null, selectedSortOrder: string, searchInputText: string | null) => {
+const useGames = (
+    selectedGenre: Genre | null,
+    selectedPlatform: PlatformList | null,
+    selectedSortOrder: string,
+    searchInputText: string | null,
+    selectedCurrentPage: number
+) => {
     const [games, setGames] = useState<Games[]>([]);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [nextPage, setNextPage] = useState<string | null>(null);
+    const [previousPage, setPreviousPage] = useState<string | null>(null);
     const controller = new AbortController();
 
     useEffect(() => {
@@ -44,7 +52,8 @@ const useGames = (selectedGenre: Genre | null, selectedPlatform: PlatformList | 
                         genres: selectedGenre?.id,
                         platforms: selectedPlatform?.id,
                         ordering: selectedSortOrder,
-                        search: searchInputText
+                        search: searchInputText,
+                        page: selectedCurrentPage
                     }
                 }
             )

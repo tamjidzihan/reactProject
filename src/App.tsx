@@ -19,9 +19,6 @@ function App() {
   const [isSelectedPlatform, setISSelectedPlatform] = useState<PlatformList | null>(null)
   const [isSelectedSortOrder, setIsSelectedSortOrder] = useState('')
   const [isSearchInputs, setIsSearchInputs] = useState('')
-
-  const [nextPage, setNextPage] = useState<string | null>(null);
-  const [previousPage, setPreviousPage] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleNextPage = () => {
@@ -96,12 +93,11 @@ function App() {
             selectedPlatform={isSelectedPlatform}
             selectedSortOrder={isSelectedSortOrder}
             searchInputText={isSearchInputs}
+            selectedCurrentPage={currentPage}
           />
           <GamePagination
             onNextPage={handleNextPage}
             onPreviousPage={handlePreviousPage}
-            hasNextPage={!!nextPage}
-            hasPreviousPage={!!previousPage}
 
           />
         </GridItem>
