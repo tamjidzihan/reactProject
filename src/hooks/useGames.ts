@@ -59,6 +59,8 @@ const useGames = (
             )
             .then(res => {
                 setGames(res.data.results)
+                setNextPage(res.data.next)
+                setPreviousPage(res.data.previous)
                 setIsLoading(false)
             })
             .catch((err) => {
@@ -71,9 +73,10 @@ const useGames = (
         selectedGenre?.id,
         selectedPlatform?.id,
         selectedSortOrder,
-        searchInputText
+        searchInputText,
+        selectedCurrentPage
     ]);
-    return { games, error, isLoading }
+    return { games, nextPage, previousPage, error, isLoading }
 };
 
 export default useGames;

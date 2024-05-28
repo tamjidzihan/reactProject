@@ -1,4 +1,4 @@
-import { Card, CardBody, HStack, Heading, Image, Tag, Text } from "@chakra-ui/react"
+import { Card, CardBody, HStack, Heading, Image } from "@chakra-ui/react"
 import { Games } from "../hooks/useGames"
 import PlatfromIconList from "./PlatfromIconList"
 import MetacriticScore from "./MetacriticScore"
@@ -25,7 +25,7 @@ function GameCard({ game }: Props) {
                     <MetacriticScore metacritic={game.metacritic} />
                 </HStack>
 
-                <Heading fontSize={"2xl"}>
+                <Heading cursor='pointer' fontSize={"2xl"}>
                     {game.name}
                 </Heading>
 

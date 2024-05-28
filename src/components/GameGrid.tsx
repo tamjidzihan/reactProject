@@ -4,6 +4,7 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import { Genre } from "../hooks/useGenre";
 import { PlatformList } from "../hooks/usePlatforms";
+import GamePagination from "./GamePagination";
 
 interface Props {
     selectedGenre: Genre | null;
@@ -11,6 +12,7 @@ interface Props {
     selectedSortOrder: string;
     searchInputText: string | null;
     selectedCurrentPage: number;
+    onSelectedCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 
@@ -19,9 +21,16 @@ function GameGrid({
     selectedPlatform,
     selectedSortOrder,
     searchInputText,
-    selectedCurrentPage
+    selectedCurrentPage,
+    onSelectedCurrentPage
 }: Props) {
-    const { error, isLoading, games } = useGames(selectedGenre, selectedPlatform, selectedSortOrder, searchInputText, selectedCurrentPage);
+    const { error, nextPage, previousPage, isLoading, games } = useGames(
+        selectedGenre,
+        selectedPlatform,
+        selectedSortOrder,
+        searchInputText,
+        selectedCurrentPage
+    );
     const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
     return (
@@ -43,6 +52,12 @@ function GameGrid({
                     <GameCard key={game.id} game={game} />
                 )}
             </SimpleGrid>
+            <GamePagination
+                currentPage={selectedCurrentPage}
+                onCurrentPage={onSelectedCurrentPage}
+                nextPage={nextPage}
+                previousPage={previousPage}
+            />
         </>
     )
 }

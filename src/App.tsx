@@ -6,11 +6,11 @@ import { useState } from 'react'
 import { Genre } from './hooks/useGenre'
 import PlatformsSelector from './components/PlatformsSelector'
 import { PlatformList } from './hooks/usePlatforms'
-import { Box, Grid, GridItem, HStack, Show } from '@chakra-ui/react'
 import OrderingGames from './components/OrderingGames'
 import GameHeading from './components/GameHeading'
 import GamePagination from './components/GamePagination'
-
+import { Box, Grid, GridItem, HStack, Show } from '@chakra-ui/react'
+import GameDetails from './components/GameDetails'
 
 
 
@@ -19,20 +19,7 @@ function App() {
   const [isSelectedPlatform, setISSelectedPlatform] = useState<PlatformList | null>(null)
   const [isSelectedSortOrder, setIsSelectedSortOrder] = useState('')
   const [isSearchInputs, setIsSearchInputs] = useState('')
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const handleNextPage = () => {
-    if (nextPage) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (previousPage) {
-      setCurrentPage((prevPage) => prevPage - 1);
-    }
-  };
-
+  const [isCurrentPage, setIsCurrentPage] = useState<number>(1);
 
   return (
     <>
@@ -43,7 +30,7 @@ function App() {
       }}
         templateColumns={{
           base: '1fr',
-          lg: '250px'
+          lg: '260px'
         }}>
 
         {/* ===== Start Navbar ===== */}
@@ -73,6 +60,7 @@ function App() {
 
         {/* ===== Start Main  ===== */}
         <GridItem area='main'>
+          <GameDetails />
           <Box padding='0 15px 10px'>
             <GameHeading
               genre={isSelectedGenre}
@@ -93,13 +81,15 @@ function App() {
             selectedPlatform={isSelectedPlatform}
             selectedSortOrder={isSelectedSortOrder}
             searchInputText={isSearchInputs}
-            selectedCurrentPage={currentPage}
-          />
-          <GamePagination
-            onNextPage={handleNextPage}
-            onPreviousPage={handlePreviousPage}
+            selectedCurrentPage={isCurrentPage}
+            onSelectedCurrentPage={setIsCurrentPage}
 
           />
+          {/* <GamePagination
+            currentPage={isCurrentPage}
+            onCurrentPage={setIsCurrentPage}
+
+          /> */}
         </GridItem>
         {/* ===== End Main  ===== */}
 

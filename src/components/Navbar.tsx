@@ -15,11 +15,11 @@ function Navbar({ onSearchText }: Props) {
         <HStack justifyContent='space-around' padding='6px'>
 
             <VStack>
-                <Image src={logo} boxSize={'40px'} />
+                {/* <Image src={logo} boxSize={'40px'} /> */}
                 <Text
                     whiteSpace='nowrap'
                     fontSize={'2xl'}
-                    color='orange.500'>
+                    colorScheme='orange.500'>
                     Z-Zone
                 </Text>
             </VStack>

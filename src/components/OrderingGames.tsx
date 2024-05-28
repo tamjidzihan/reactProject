@@ -25,25 +25,12 @@ function OrderingGames({ onSelectSortOrder, selectedSortOrder }: Props) {
 
     return (
         <Menu>
-            {/* <MenuButton as={Button} rightIcon={<ChevronDownIcon />} margin={'10px'}>
-                Order By:{selectedSortOrder}
-            </MenuButton> */}
 
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />} margin={'10px'}>
                 Order By : {currentSortOrder?.label}
             </MenuButton>
 
-
-
             <MenuList>
-                {/* {isLoading && <Spinner
-                    thickness='4px'
-                    speed='0.65s'
-                    emptyColor='gray.200'
-                    color='orange.500'
-                    size='xl'
-                />} */}
-
                 {sortOrder.map((order) =>
                     <MenuItem
                         key={order.value}
@@ -52,7 +39,6 @@ function OrderingGames({ onSelectSortOrder, selectedSortOrder }: Props) {
                         {order.label}
                     </MenuItem>
                 )}
-
 
             </MenuList>
         </Menu>
