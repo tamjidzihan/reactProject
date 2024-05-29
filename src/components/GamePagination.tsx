@@ -35,7 +35,7 @@ function GamePagination({ currentPage, onCurrentPage, nextPage, previousPage }: 
                 <ChevronLeftIcon fontSize='xxx-large' cursor='pointer' />
             </Button>
             <Tag variant='solid' colorScheme='gray' paddingX={4} fontSize='large'>
-                1 / {currentPage}
+                {currentPage} / 1
             </Tag>
             <Button onClick={handleNextPage}
                 isDisabled={!nextPage}

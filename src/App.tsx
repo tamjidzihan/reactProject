@@ -8,9 +8,7 @@ import PlatformsSelector from './components/PlatformsSelector'
 import { PlatformList } from './hooks/usePlatforms'
 import OrderingGames from './components/OrderingGames'
 import GameHeading from './components/GameHeading'
-import GamePagination from './components/GamePagination'
 import { Box, Grid, GridItem, HStack, Show } from '@chakra-ui/react'
-import GameDetails from './components/GameDetails'
 
 
 
@@ -60,7 +58,7 @@ function App() {
 
         {/* ===== Start Main  ===== */}
         <GridItem area='main'>
-          <GameDetails />
+
           <Box padding='0 15px 10px'>
             <GameHeading
               genre={isSelectedGenre}

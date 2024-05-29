@@ -19,7 +19,8 @@ function Navbar({ onSearchText }: Props) {
                 <Text
                     whiteSpace='nowrap'
                     fontSize={'2xl'}
-                    colorScheme='orange.500'>
+                    colorScheme='orange.500'
+                    fontWeight='bold'>
                     Z-Zone
                 </Text>
             </VStack>
