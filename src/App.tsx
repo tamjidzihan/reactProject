@@ -11,7 +11,6 @@ import GameHeading from './components/GameHeading'
 import { Box, Grid, GridItem, HStack, Show } from '@chakra-ui/react'
 
 
-
 function App() {
   const [isSelectedGenre, setISSelectedGenre] = useState<Genre | null>(null)
   const [isSelectedPlatform, setISSelectedPlatform] = useState<PlatformList | null>(null)

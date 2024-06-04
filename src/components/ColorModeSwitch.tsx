@@ -3,8 +3,6 @@ import { HStack, Switch, Text, useColorMode } from '@chakra-ui/react'
 function ColorModeSwitch() {
     const { toggleColorMode, colorMode } = useColorMode()
 
-
-
     return (
         <div>
             <HStack>
