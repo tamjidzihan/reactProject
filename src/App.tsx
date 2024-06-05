@@ -1,12 +1,12 @@
-import './App.css'
-import Navbar from './components/Navbar'
-import GameGrid from './components/GameGrid'
-import GenreList from './components/GenreList'
-import { useState } from 'react'
-import PlatformsSelector from './components/PlatformsSelector'
-import OrderingGames from './components/OrderingGames'
-import GameHeading from './components/GameHeading'
 import { Box, Grid, GridItem, HStack, Show } from '@chakra-ui/react'
+import { useState } from 'react'
+import './App.css'
+import GameGrid from './components/GameGrid'
+import GameHeading from './components/GameHeading'
+import GenreList from './components/GenreList'
+import Navbar from './components/Navbar'
+import OrderingGames from './components/OrderingGames'
+import PlatformsSelector from './components/PlatformsSelector'
 
 
 function App() {

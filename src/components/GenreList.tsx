@@ -1,8 +1,8 @@
-import useGenre from '../hooks/useGenre'
 import { Button, HStack, Heading, Image, ListItem, UnorderedList } from '@chakra-ui/react'
+import useGenre from '../hooks/useGenre'
 import getCroppedImageUrl from '../services/image-url'
-import GenreListSkeleton from './GenreListSkeleton'
 import useGenreStore from '../stateProviders/GenreStore'
+import GenreListSkeleton from './GenreListSkeleton'
 
 
 function GenreList() {

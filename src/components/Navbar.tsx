@@ -1,14 +1,8 @@
-import { HStack, Image, Text, VStack } from '@chakra-ui/react'
-import logo from '../assets/logo.webp'
+import { HStack, Text, VStack } from '@chakra-ui/react'
 import ColorModeSwitch from './ColorModeSwitch'
 import SearchInputs from './SearchInputs'
-import useSearchStore from '../stateProviders/SearchStore'
-
-
-
 
 function Navbar() {
-    const { setSearchText } = useSearchStore()
 
     return (
         <HStack justifyContent='space-around' padding='6px'>
@@ -24,7 +18,7 @@ function Navbar() {
                 </Text>
             </VStack>
 
-            <SearchInputs onSearchInput={(search) => setSearchText(search)} />
+            <SearchInputs />
 
             <ColorModeSwitch />
         </HStack>

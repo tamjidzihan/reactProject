@@ -1,19 +1,20 @@
 import { CloseIcon } from '@chakra-ui/icons'
-import { InputGroup, Input, InputLeftElement, InputRightElement } from '@chakra-ui/react'
+import { Input, InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { FaSearch } from 'react-icons/fa'
+import useSearchStore from '../stateProviders/SearchStore'
 
-interface Props {
-    onSearchInput: (searchInputs: string) => void
-}
 
-function SearchInputs({ onSearchInput }: Props) {
+
+function SearchInputs() {
     const ref = useRef<HTMLInputElement>(null)
+    const setSearchText = useSearchStore(s => s.setSearchText)
+
     return (
         <form style={{ width: '70%' }} onSubmit={(event) => {
             event.preventDefault();
             if (ref.current) {
-                onSearchInput(ref.current.value)
+                setSearchText(ref.current.value)
             }
         }}>
             <InputGroup>
