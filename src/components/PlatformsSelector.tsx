@@ -2,20 +2,18 @@ import { Menu, MenuButton, Button, MenuList, MenuItem, Icon, Spinner } from '@ch
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import usePlatforms, { PlatformList } from '../hooks/usePlatforms'
 import { iconMap } from './PlatfromIconList'
+import usePlatformStore from '../stateProviders/PlatFormStore';
 
-interface Props {
-    onSelectPlatfrom: (platform: PlatformList) => void;
-    selectedPlatfrom: PlatformList | null;
-}
 
-function PlatformsSelector({ onSelectPlatfrom, selectedPlatfrom }: Props) {
+function PlatformsSelector() {
+    const { isSelectedPlatform, setISSelectedPlatform } = usePlatformStore()
     const { platforms, error, isLoading } = usePlatforms()
 
     if (error) return null;
     return (
         <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />} >
-                {selectedPlatfrom?.name || 'Platforms'}
+                {isSelectedPlatform?.name || 'Platforms'}
             </MenuButton>
             <MenuList>
                 {isLoading && <Spinner
@@ -28,7 +26,7 @@ function PlatformsSelector({ onSelectPlatfrom, selectedPlatfrom }: Props) {
                 {platforms.map(platform =>
                     <MenuItem
                         key={platform.id}
-                        onClick={() => onSelectPlatfrom(platform)}>
+                        onClick={() => setISSelectedPlatform(platform)}>
                         <Icon marginEnd={'6px'} color={'gray.500'} as={iconMap[platform.slug]} />
                         {platform.name}
                     </MenuItem>)}

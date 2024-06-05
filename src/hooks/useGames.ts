@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import apiClint from "../services/api-clint";
 import { CanceledError } from "axios";
-import { Genre } from "./useGenre";
-import { PlatformList } from "./usePlatforms";
+import useSearchStore from "../stateProviders/SearchStore";
+import useGenreStore from "../stateProviders/GenreStore";
+import usePlatformStore from "../stateProviders/PlatFormStore";
+import useSortOrderStore from "../stateProviders/SortOrderStore";
 
 
 
@@ -28,10 +30,6 @@ export interface FetchGameResponse {
 }
 
 const useGames = (
-    selectedGenre: Genre | null,
-    selectedPlatform: PlatformList | null,
-    selectedSortOrder: string,
-    searchInputText: string | null,
     selectedCurrentPage: number
 ) => {
     const [games, setGames] = useState<Games[]>([]);
@@ -41,6 +39,14 @@ const useGames = (
     const [previousPage, setPreviousPage] = useState<string | null>(null);
     const controller = new AbortController();
 
+    const { isSelectedPlatform } = usePlatformStore()
+    const { isSelectedGenre } = useGenreStore()
+    const { search } = useSearchStore()
+    const { isSelectedSortOrder } = useSortOrderStore()
+
+
+
+
     useEffect(() => {
         setIsLoading(true)
         apiClint
@@ -49,10 +55,10 @@ const useGames = (
                 {
                     signal: controller.signal,
                     params: {
-                        genres: selectedGenre?.id,
-                        platforms: selectedPlatform?.id,
-                        ordering: selectedSortOrder,
-                        search: searchInputText,
+                        genres: isSelectedGenre?.id,
+                        platforms: isSelectedPlatform?.id,
+                        ordering: isSelectedSortOrder,
+                        search: search,
                         page: selectedCurrentPage
                     }
                 }
@@ -70,11 +76,11 @@ const useGames = (
             })
         // return () => controller.abort()
     }, [
-        selectedGenre?.id,
-        selectedPlatform?.id,
-        selectedSortOrder,
-        searchInputText,
-        selectedCurrentPage
+        isSelectedGenre?.id,
+        isSelectedPlatform?.id,
+        isSelectedSortOrder,
+        selectedCurrentPage,
+        search
     ]);
     return { games, nextPage, previousPage, error, isLoading }
 };

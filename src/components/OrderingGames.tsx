@@ -1,14 +1,10 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import useSortOrderStore from '../stateProviders/SortOrderStore';
 
 
-interface Props {
-    onSelectSortOrder: (sortOrder: string) => void;
-    selectedSortOrder: string;
-}
-
-
-function OrderingGames({ onSelectSortOrder, selectedSortOrder }: Props) {
+function OrderingGames() {
+    const { isSelectedSortOrder, setIsSelectedSortOrder } = useSortOrderStore()
     const sortOrder = [
         { value: '', label: 'Relavance' },
         { value: 'name', label: 'Name' },
@@ -19,9 +15,7 @@ function OrderingGames({ onSelectSortOrder, selectedSortOrder }: Props) {
         { value: '-updated', label: 'Updated' },
         { value: '-created', label: 'Created' },
     ]
-
-
-    const currentSortOrder = sortOrder.find((order) => order.value === selectedSortOrder)
+    const currentSortOrder = sortOrder.find((order) => order.value === isSelectedSortOrder)
 
     return (
         <Menu>
@@ -35,7 +29,7 @@ function OrderingGames({ onSelectSortOrder, selectedSortOrder }: Props) {
                     <MenuItem
                         key={order.value}
                         value={order.value}
-                        onClick={() => onSelectSortOrder(order.value)}>
+                        onClick={() => setIsSelectedSortOrder(order.value)}>
                         {order.label}
                     </MenuItem>
                 )}
