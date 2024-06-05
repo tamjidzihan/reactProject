@@ -1,8 +1,8 @@
-import { Menu, MenuButton, Button, MenuList, MenuItem, Icon, Spinner } from '@chakra-ui/react'
-import { ChevronDownIcon } from '@chakra-ui/icons'
-import usePlatforms, { PlatformList } from '../hooks/usePlatforms'
-import { iconMap } from './PlatfromIconList'
+import { ChevronDownIcon } from '@chakra-ui/icons';
+import { Button, Icon, Menu, MenuButton, MenuItem, MenuList, Spinner } from '@chakra-ui/react';
+import usePlatforms from '../hooks/usePlatforms';
 import usePlatformStore from '../stateProviders/PlatFormStore';
+import { iconMap } from './PlatfromIconList';
 
 
 function PlatformsSelector() {
