@@ -23,7 +23,6 @@ function App() {
           base: '1fr',
           lg: '260px'
         }}>
-
         {/* ===== Start Navbar ===== */}
         <GridItem
           area='nav'

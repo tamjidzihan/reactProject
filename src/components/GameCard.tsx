@@ -3,6 +3,7 @@ import { Games } from "../hooks/useGames"
 import PlatfromIconList from "./PlatfromIconList"
 import MetacriticScore from "./MetacriticScore"
 import getCroppedImageUrl from "../services/image-url"
+import { Link } from "react-router-dom"
 
 interface Props {
     game: Games
@@ -12,7 +13,16 @@ interface Props {
 
 function GameCard({ game }: Props) {
     return (
-        <Card borderRadius='10px' overflow={"hidden"} boxShadow={" rgba(17, 12, 46, 0.15) 0px 50px 100px -20px"} width={'4rm'}>
+        <Card
+            borderRadius='10px'
+            overflow={"hidden"}
+            boxShadow={" rgba(17, 12, 46, 0.15) 0px 50px 100px -20px"}
+            width={'4rm'}
+            _hover={{
+                transform: 'scale(1.07)',
+                transition: 'transform 0.5s ease-in-out'
+            }}
+        >
 
             <Image objectFit='cover' src={getCroppedImageUrl(game.background_image)} />
 
@@ -26,7 +36,8 @@ function GameCard({ game }: Props) {
                 </HStack>
 
                 <Heading cursor='pointer' fontSize={"2xl"}>
-                    {game.name}
+                    <Link to={`game/${game.name}/${game.id}`}>{game.name}</Link>
+
                 </Heading>
 
             </CardBody>

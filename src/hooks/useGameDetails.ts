@@ -9,8 +9,9 @@ export interface FetchGameDetailResponse {
     slug: string;
     background_image: string;
     description: string;
+    rating: number;
+    metacritic: number;
 }
-
 
 
 const useGameDetails = (selectedGameId: number) => {
