@@ -20,7 +20,7 @@ function GameCard({ game }: Props) {
             width={'4rm'}
             _hover={{
                 transform: 'scale(1.07)',
-                transition: 'transform 0.5s ease-in-out'
+                transition: 'transform 0.15s ease-in'
             }}
         >
 

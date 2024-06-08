@@ -25,7 +25,7 @@ const Layout = () => {
                 {/* ===== End Sidebar  ===== */}
 
                 {/* ===== Start Main  ===== */}
-                <GridItem area='main'>
+                <GridItem area='main' padding={5}>
                     <Outlet />
                 </GridItem>
                 {/* ===== End Main  ===== */}

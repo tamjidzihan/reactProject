@@ -1,10 +1,11 @@
 import React from 'react'
+import GameDetails from '../components/GameDetails'
 
 const GameDetailPage = () => {
     return (
-        <div>
-            GameDetailPage
-        </div>
+        <>
+            <GameDetails />
+        </>
     )
 }
 

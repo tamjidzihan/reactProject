@@ -8,7 +8,7 @@ export interface FetchGameDetailResponse {
     name: string;
     slug: string;
     background_image: string;
-    description: string;
+    description_raw: string;
     rating: number;
     metacritic: number;
 }
