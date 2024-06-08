@@ -22,19 +22,21 @@ function GameDetails() {
             return <Text>{description}</Text>
 
         return (
-            <Text>
-                {expanded ? description : summary} {"  "}
-                <Button
-                    size='xs'
-                    fontWeight='bold'
-                    colorScheme='yellow'
-                    marginX='3px'
-                    _hover={{ opacity: '0.5' }}
-                    onClick={() => setExpanded(!expanded)}
-                >
-                    {expanded ? 'Show Less' : 'Read More'}
-                </Button>
-            </Text>
+            <>
+                <Text>
+                    {expanded ? description : summary} {"  "}
+                    <Button
+                        size='xs'
+                        fontWeight='bold'
+                        colorScheme='yellow'
+                        marginX='3px'
+                        _hover={{ opacity: '0.5' }}
+                        onClick={() => setExpanded(!expanded)}
+                    >
+                        {expanded ? 'Show Less' : 'Read More'}
+                    </Button>
+                </Text>
+            </>
         )
     }
 
