@@ -1,6 +1,7 @@
 import { GridItem, HStack, Text, VStack } from '@chakra-ui/react'
 import ColorModeSwitch from './ColorModeSwitch'
 import SearchInputs from './SearchInputs'
+// import logo from '../assets/logo.webp'
 
 function Navbar() {
 
