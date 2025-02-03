@@ -1,38 +1,16 @@
-import { Grid, GridItem } from "@chakra-ui/react"
-import Navbar from "../components/Navbar"
-import GenreList from "../components/GenreList"
-import { Outlet } from "react-router-dom"
+import NavBar from '../components/NavBar';
+import { Outlet } from 'react-router-dom';
+import { Box } from '@chakra-ui/react';
 
 const Layout = () => {
-    return (
-        <>
-            {/* ===== Grid Layout ===== */}
-            <Grid templateAreas={{
-                base: `"nav" "main"`,
-                lg: `"nav nav" "aside main"`
-            }}
-                templateColumns={{
-                    base: '1fr',
-                    lg: '260px'
-                }}>
+  return (
+    <>
+      <NavBar />
+      <Box padding={5}>
+        <Outlet />
+      </Box>
+    </>
+  );
+};
 
-                {/* ===== Start Navbar ===== */}
-                <Navbar />
-                {/* ===== End Navbar ===== */}
-
-                {/* ===== Start Sidebar  ===== */}
-                <GenreList />
-                {/* ===== End Sidebar  ===== */}
-
-                {/* ===== Start Main  ===== */}
-                <GridItem area='main' padding={5}>
-                    <Outlet />
-                </GridItem>
-                {/* ===== End Main  ===== */}
-
-            </Grid>
-        </>
-    )
-}
-
-export default Layout
+export default Layout;

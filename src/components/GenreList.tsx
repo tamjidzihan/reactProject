@@ -1,59 +1,60 @@
-import { Button, GridItem, HStack, Heading, Image, ListItem, Show, UnorderedList } from '@chakra-ui/react'
-import useGenre from '../hooks/useGenre'
-import getCroppedImageUrl from '../services/image-url'
-import useGenreStore from '../stateProviders/GenreStore'
-import GenreListSkeleton from './GenreListSkeleton'
+import {
+  Button,
+  Heading,
+  HStack,
+  Image,
+  List,
+  ListItem,
+  Spinner
+} from '@chakra-ui/react';
+import useGenres from '../hooks/useGenres';
+import getCroppedImageUrl from '../services/image-url';
+import useGameQueryStore from '../store';
 
+const GenreList = () => {
+  const { data, isLoading, error } = useGenres();
+  const selectedGenreId = useGameQueryStore(s => s.gameQuery.genreId);
+  const setSelectedGenreId = useGameQueryStore(s => s.setGenreId);
 
-function GenreList() {
-    const { isSelectedGenre, setISSelectedGenre } = useGenreStore()
-    const { genres, error, isLoading } = useGenre()
-    const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 15]
+  if (error) return null;
 
-    if (error) return null;
+  if (isLoading) return <Spinner />;
 
-    return (
-        <>
-            <Show above="lg">
-                <GridItem area='aside' padding={'15px'}>
-                    <UnorderedList >
-                        <Heading fontSize='2xl' marginY={3}>Genres</Heading>
+  return (
+    <>
+      <Heading fontSize="2xl" marginTop={9} marginBottom={3}>
+        Genres
+      </Heading>
+      <List>
+        {data?.results.map((genre) => (
+          <ListItem key={genre.id} paddingY="5px">
+            <HStack>
+              <Image
+                boxSize="32px"
+                borderRadius={8}
+                objectFit="cover"
+                src={getCroppedImageUrl(genre.image_background)}
+              />
+              <Button
+                whiteSpace="normal"
+                textAlign="left"
+                fontWeight={
+                  genre.id === selectedGenreId
+                    ? 'bold'
+                    : 'normal'
+                }
+                onClick={() => setSelectedGenreId(genre.id)}
+                fontSize="md"
+                variant="link"
+              >
+                {genre.name}
+              </Button>
+            </HStack>
+          </ListItem>
+        ))}
+      </List>
+    </>
+  );
+};
 
-                        {isLoading && skeletons.map(skeleton =>
-                            <GenreListSkeleton key={skeleton} />
-                        )}
-
-                        {genres.map(genre =>
-                            <ListItem key={genre.id} paddingY='10px' listStyleType={'none'}>
-                                <HStack>
-                                    <Image
-                                        boxSize='32px'
-                                        borderRadius='8px'
-                                        src={getCroppedImageUrl(genre.image_background)}
-                                    />
-                                    <Button
-                                        // onClick={() => onSelectGenre(genre)}
-                                        // fontSize={genre.id === selectedGenre?.id ? 'xl' : 'lg'}
-                                        // fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'}
-
-                                        onClick={() => setISSelectedGenre(genre)}
-                                        fontSize={genre.id === isSelectedGenre?.id ? 'xl' : 'lg'}
-                                        fontWeight={genre.id === isSelectedGenre?.id ? 'bold' : 'normal'}
-
-                                        variant={"link"}
-                                        whiteSpace='wrap'
-                                        textAlign='start'
-                                    >
-                                        {genre.name}
-                                    </Button>
-                                </HStack>
-                            </ListItem>
-                        )}
-                    </UnorderedList>
-                </GridItem>
-            </Show>
-        </>
-    )
-}
-
-export default GenreList
+export default GenreList;
