@@ -1,64 +1,51 @@
-import {
-  SimpleGrid,
-  Spinner,
-  Text
-} from '@chakra-ui/react';
-import React from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import useGames from '../hooks/useGames';
-import GameCard from './GameCard';
-import GameCardContainer from './GameCardContainer';
-import GameCardSkeleton from './GameCardSkeleton';
+import { Alert, AlertIcon, AlertTitle, SimpleGrid } from "@chakra-ui/react";
+import useGames from "../hooks/useGames";
+import GameCard from "./GameCard";
+import GameCardSkeleton from "./GameCardSkeleton";
+import GamePagination from "./GamePagination";
 
-const GameGrid = () => {
-  const {
-    data,
-    error,
-    isLoading,
-    isFetchingNextPage,
-    fetchNextPage,
-    hasNextPage,
-  } = useGames();
-  const skeletons = [1, 2, 3, 4, 5, 6];
+interface Props {
+    selectedCurrentPage: number;
+    onSelectedCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+}
 
-  if (error) return <Text>{error.message}</Text>;
 
-  const fetchedGamesCount =
-    data?.pages.reduce(
-      (total, page) => total + page.results.length,
-      0
-    ) || 0;
+function GameGrid({
+    selectedCurrentPage,
+    onSelectedCurrentPage
+}: Props) {
+    const { error, nextPage, previousPage, isLoading, games } = useGames(
+        selectedCurrentPage
+    );
+    const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
-  return (
-    <InfiniteScroll
-      dataLength={fetchedGamesCount}
-      hasMore={!!hasNextPage}
-      next={() => fetchNextPage()}
-      loader={<Spinner />}
-    >
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-        spacing={6}
-        padding="10px"
-      >
-        {isLoading &&
-          skeletons.map((skeleton) => (
-            <GameCardContainer key={skeleton}>
-              <GameCardSkeleton />
-            </GameCardContainer>
-          ))}
-        {data?.pages.map((page, index) => (
-          <React.Fragment key={index}>
-            {page.results.map((game) => (
-              <GameCardContainer key={game.id}>
-                <GameCard game={game} />
-              </GameCardContainer>
-            ))}
-          </React.Fragment>
-        ))}
-      </SimpleGrid>
-    </InfiniteScroll>
-  );
-};
+    return (
+        <>
+            {error && <Alert status='error'>
+                <AlertIcon />
+                <AlertTitle>{error}</AlertTitle>
+            </Alert>}
 
-export default GameGrid;
+            <SimpleGrid
+                columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+                spacing={8}
+                paddingX={'15px'}>
+
+                {isLoading && skeletons.map(skeleton =>
+                    <GameCardSkeleton key={skeleton} />
+                )}
+                {games.map((game) =>
+                    <GameCard key={game.id} game={game} />
+                )}
+            </SimpleGrid>
+            <GamePagination
+                currentPage={selectedCurrentPage}
+                onCurrentPage={onSelectedCurrentPage}
+                nextPage={nextPage}
+                previousPage={previousPage}
+            />
+        </>
+    )
+}
+
+export default GameGrid
